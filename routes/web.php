@@ -16,8 +16,8 @@ Route::post('/produtos', [ProdutoController::class , 'store']);
 
 Route::get('/teste-orm', function() {
     User::create([
-        'name' => 'Ana Clara Santos',
-        'email' => 'ana.santos@escola.sp.gov.br',
+        'name' => 'Icaro Davies',
+        'email' => 'icaro.davies@escola.sp.gov.br',
         'password' => '12345678',
     ]);
 
