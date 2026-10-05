@@ -3,7 +3,6 @@
 @section('title', 'Novo Usuário')
 
 @section('content')
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <section class="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-xl shadow-sm ring-1 ring-slate-200">
         <h2 class="text-2xl font-bold text-slate-900">Cadastrar Novo Usuário</h2>
