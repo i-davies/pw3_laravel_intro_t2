@@ -24,6 +24,10 @@ Route::post('/usuarios', [UserController::class, 'store']);
 Route::get('/usuarios/{id}/editar', [UserController::class, 'edit']);
 Route::put('/usuarios/{id}', [UserController::class, 'update']);
 
+
+// Rota de exclusão (DELETE)
+Route::delete('/usuarios/{id}', [UserController::class, 'destroy']);
+
 Route::get('/produtos', [ProdutoController::class , 'index']);
 Route::post('/produtos', [ProdutoController::class , 'store']);
 

@@ -85,4 +85,17 @@ class UserController extends Controller
 
         return redirect('/admin')->with('sucesso', 'Usuário atualzia com sucesso.');
     }
+
+    /**
+     * Remove o registro do usuário no banco de dados
+     */
+    public function destroy($id)
+    {
+        $usuario = User::findOrFail($id);
+
+        //Executa a exclusão do registro
+        $usuario->delete();
+
+        return redirect('/admin')->with('sucesso', 'Item removido com sucesso.');
+    }
 }
