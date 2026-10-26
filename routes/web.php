@@ -4,6 +4,8 @@ use App\Models\User;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('home');
@@ -39,4 +41,20 @@ Route::get('/teste-orm', function() {
     ]);
 
     return User::all();
+});
+
+Route::get('/lab-seguranca', function (Request $request) {
+    $termo = $request->query('busca', '');
+
+    $resultadoVulneravel = [];
+    $erroVulneravel = null;
+
+    // 1. Simulação didática com falha (cancatenada propositalmente para teste)
+    if ($termo !== '') {
+        try {
+            $resultadoVulneravel = DB::select("SELECT id, name, email FROM users WHERE name = '$termo'");
+        } catch (\Exception $e) {
+            $erroVulneravel = $e->getMessage();
+        }
+    }
 });
