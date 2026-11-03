@@ -57,4 +57,25 @@ Route::get('/lab-seguranca', function (Request $request) {
             $erroVulneravel = $e->getMessage();
         }
     }
+
+    // 2. Consulta segura com Eloquent ORM
+    $resultadoSeguro = User::select('id', 'name', 'email')
+        ->where('name', $termo)
+        ->get();
+
+    return response()->json([
+        'termo_digitado' => $termo,
+        'abordagem_vulneral' => [
+            'descricao' => 'Consulta montada com concatenação direta',
+            'registros_encontrados' => count($resultadoVulneravel),
+            'dados' => $resultadoVulneravel,
+            'erro' => $erroVulneravel
+        ],
+        'abordagem_segura_eloquent' => [
+            'descricao' => 'Consulta montada com Eloquent ORM',
+            'registros_encontrados' => $resultadoSeguro->count(),
+            'dados' => $resultadoSeguro
+        ],
+    ], 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
 });
